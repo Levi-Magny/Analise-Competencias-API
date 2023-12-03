@@ -32,14 +32,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
-CORS_ALLOW_HEADERS = (
-    "accept",
-    "authorization",
-    "content-type",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-)
+CORS_ALLOW_HEADERS = "*"
 
 # Application definition
 
@@ -51,10 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'stuprofile',
     
     'rest_framework_simplejwt.token_blacklist',
-    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -63,13 +56,6 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
-
-CORS_ORIGIN_ALLOW_ALL=True
-
-# CORS_ALLOWED_ORIGINS = [
-#     'http://localhost:3000',
-#     'https://analise-competencias.vercel.app'    
-# ]
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=10),
@@ -104,16 +90,27 @@ SIMPLE_JWT = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'stuprofile_api.urls'
+
+
+
+# CORS_ORIGIN_ALLOW_ALL=True
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'https://analise-competencias.vercel.app'
+    
+]
+
+# CORS_ALLOWED_ORIGINS = "*"
 
 TEMPLATES = [
     {
