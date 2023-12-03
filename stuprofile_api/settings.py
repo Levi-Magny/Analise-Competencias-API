@@ -25,13 +25,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--i^+#3-ijtf_*cvht1-)5g(5)d=)98zei*(b*r(s)ygr+c_2&^'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
+CORS_ALLOW_HEADERS = "*"
 
 # Application definition
 
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'stuprofile',
     
     'rest_framework_simplejwt.token_blacklist',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -55,6 +57,9 @@ REST_FRAMEWORK = {
     )
 }
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=10),
@@ -94,6 +99,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'stuprofile_api.urls'
