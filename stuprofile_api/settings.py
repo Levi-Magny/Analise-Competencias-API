@@ -64,10 +64,12 @@ REST_FRAMEWORK = {
     )
 }
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'https://analise-competencias.vercel.app'    
-]
+CORS_ORIGIN_ALLOW_ALL=True
+
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:3000',
+#     'https://analise-competencias.vercel.app'    
+# ]
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=10),
