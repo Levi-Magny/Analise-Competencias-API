@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -141,8 +141,8 @@ DATABASES = {
         'NAME': env('DATABASE_NAME'),
         'USER': env('DATABASE_USER'),
         'PASSWORD': env('DATABASE_PASS'),
-        'HOST': 'roundhouse.proxy.rlwy.net',
-        'PORT': '53465',
+        'HOST': 'stuprofiledb.c18gsigiqkti.sa-east-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 

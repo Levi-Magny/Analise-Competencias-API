@@ -1,1 +1,4 @@
 /stuprofile_api/.env
+/.vscode/
+/stuprofile/__pycache__/views.cpython-311.pyc
+/stuprofile_api/__pycache__/settings.cpython-311.pyc
