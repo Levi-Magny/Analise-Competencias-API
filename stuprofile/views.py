@@ -89,11 +89,30 @@ class InserirBlooms(viewsets.ViewSet):
 @permission_classes([IsAuthenticated])
 class ListarCompetencias(viewsets.ReadOnlyModelViewSet):
     basename='listar_competencias'
-    queryset = Competencia.objects.all()
+    queryset = Competencia.objects.all().order_by('id')
     serializer_class = CompetenciaSerializer
 
 @permission_classes([IsAuthenticated])
 class ListarDocentes(viewsets.ReadOnlyModelViewSet):
     basename='listar_docentes'
-    queryset = Docente.objects.all()
+    queryset = Docente.objects.all().order_by('nome')
     serializer_class = DocenteSerializer
+    
+# @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+class AtualizarTermoAceito(viewsets.ViewSet):
+    def update(self, request):
+        self.basename = 'atualizar_termo_aceito'
+        print("chegou")
+        try:
+            docente_id = request.query_params.get('id')
+            docente = Docente.objects.get(id=docente_id)
+        except Docente.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        if request.method == 'PUT':
+            serializer = DocenteSerializer(docente, data={'termo_aceito': True}, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
