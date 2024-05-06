@@ -141,8 +141,8 @@ DATABASES = {
         'NAME': env('DATABASE_NAME'),
         'USER': env('DATABASE_USER'),
         'PASSWORD': env('DATABASE_PASS'),
-        'HOST': 'stuprofiledb.c18gsigiqkti.sa-east-1.rds.amazonaws.com',
-        'PORT': '5432',
+        'HOST': 'roundhouse.proxy.rlwy.net',
+        'PORT': '53258',
     }
 }
 
